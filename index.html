@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MML Player</title>
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <div class="title-container">
+        <h1>MML Player v1.0</h1>
+        <div class="help-icon">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg>
+          <div class="help-tooltip">
+            <div class="tooltip-header">MML Basic Grammar</div>
+            <ul class="tooltip-list">
+              <li><span>R</span> 쉼표 (박자만큼 쉬기)</li>
+              <li><span>L+N</span> 기본 길이 (L4, L8 등)</li>
+              <li><span>O+N</span> 옥타브 (0~8)</li>
+              <li><span>&lt; / &gt;</span> 옥타브 다운 / 업</li>
+              <li><span>V+N</span> 볼륨 (0~15)</li>
+              <li><span>T+N</span> 템포 (32~255)</li>
+              <li><span>&amp;</span> 음 연결 (Tie)</li>
+              <li><span>+/-</span> 샾(#) / 플랫(-)</li>
+              <li><span>N+N</span> 음 번호 (0~95)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+        <div class="controls-main">
+          <button id="togglePlayBtn" class="primary">
+            <svg id="playIcon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+            <span id="playText">재생</span>
+          </button>
+          <button id="copyBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
+            </svg>
+            복사
+          </button>
+          <button id="pasteBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M19 2h-4.18C14.4.84 13.3 0 12 0c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 18H5V4h2v3h10V4h2v16z" />
+            </svg>
+            붙여넣기
+          </button>
+        </div>
+    </header>
+
+
+    <main class="editor-grid">
+      <div class="track-container" data-track="0">
+        <div class="track-header">
+          <span class="track-label"><span class="color-dot track0"></span>Melody</span>
+          <span class="char-count">0 / 2400</span>
+        </div>
+        <textarea placeholder="mml@..." id="track0"></textarea>
+      </div>
+      <div class="track-container" data-track="1">
+        <div class="track-header">
+          <span class="track-label"><span class="color-dot track1"></span>Chord 1</span>
+          <span class="char-count">0 / 2400</span>
+        </div>
+        <textarea id="track1"></textarea>
+      </div>
+      <div class="track-container" data-track="2">
+        <div class="track-header">
+          <span class="track-label"><span class="color-dot track2"></span>Chord 2</span>
+          <span class="char-count">0 / 2400</span>
+        </div>
+        <textarea id="track2"></textarea>
+      </div>
+      <div class="track-container" data-track="3">
+        <div class="track-header">
+          <span class="track-label"><span class="color-dot track3"></span>Chord 3</span>
+          <span class="char-count">0 / 2400</span>
+        </div>
+        <textarea id="track3"></textarea>
+      </div>
+      <div class="track-container" data-track="4">
+        <div class="track-header">
+          <span class="track-label"><span class="color-dot track4"></span>Chord 4</span>
+          <span class="char-count">0 / 2400</span>
+        </div>
+        <textarea id="track4"></textarea>
+      </div>
+      <div class="track-container" data-track="5">
+        <div class="track-header">
+          <span class="track-label"><span class="color-dot track5"></span>Chord 5</span>
+          <span class="char-count">0 / 2400</span>
+        </div>
+        <textarea id="track5"></textarea>
+      </div>
+    </main>
+
+    <section class="keyboard-section">
+      <div class="keyboard-container">
+        <div id="keyboard" class="keyboard">
+          <!-- JavaScript will generate keys here -->
+        </div>
+      </div>
+    </section>
+  </div>
+  <div id="toast-container"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
