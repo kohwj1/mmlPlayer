@@ -4,6 +4,12 @@
   --point-color: #ff7502;
   --text-main: #e0e0e0;
   --text-muted: #a0a0a0;
+  --color-track0: #ff7502;
+  --color-track1: #4ade80;
+  --color-track2: #60a5fa;
+  --color-track3: #f472b6;
+  --color-track4: #facc15;
+  --color-track5: #a78bfa;
   --border-color: #3d3b3a;
   --glass-bg: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.1);
@@ -152,6 +158,7 @@ button {
   cursor: pointer;
   font-size: 1rem;
   font-weight: 600;
+  font-family: 'Jua';
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -219,12 +226,12 @@ button.primary:hover {
   display: inline-block;
 }
 
-.color-dot.track0 { background: #ff7502; }
-.color-dot.track1 { background: #4ade80; }
-.color-dot.track2 { background: #60a5fa; }
-.color-dot.track3 { background: #f472b6; }
-.color-dot.track4 { background: #facc15; }
-.color-dot.track5 { background: #a78bfa; }
+.color-dot.track0 { background: var(--color-track0); }
+.color-dot.track1 { background: var(--color-track1); }
+.color-dot.track2 { background: var(--color-track2); }
+.color-dot.track3 { background: var(--color-track3); }
+.color-dot.track4 { background: var(--color-track4); }
+.color-dot.track5 { background: var(--color-track5); }
 
 .char-count {
   font-size: 0.75rem;
@@ -335,12 +342,12 @@ textarea {
   border-color: currentColor;
 }
 
-.key.active.track0 { color: #ff7502; background: #ff7502 !important; }
-.key.active.track1 { color: #4ade80; background: #4ade80 !important; }
-.key.active.track2 { color: #60a5fa; background: #60a5fa !important; }
-.key.active.track3 { color: #f472b6; background: #f472b6 !important; }
-.key.active.track4 { color: #facc15; background: #facc15 !important; }
-.key.active.track5 { color: #a78bfa; background: #a78bfa !important; }
+.key.active.track0 { color: var(--color-track0); background: var(--color-track0) !important; }
+.key.active.track1 { color: var(--color-track1); background: var(--color-track1) !important; }
+.key.active.track2 { color: var(--color-track2); background: var(--color-track2) !important; }
+.key.active.track3 { color: var(--color-track3); background: var(--color-track3) !important; }
+.key.active.track4 { color: var(--color-track4); background: var(--color-track4) !important; }
+.key.active.track5 { color: var(--color-track5); background: var(--color-track5) !important; }
 
 @media (max-width: 768px) {
   #app {
