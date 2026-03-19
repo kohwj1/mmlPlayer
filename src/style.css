@@ -349,6 +349,31 @@ textarea {
 .key.active.track4 { color: var(--color-track4); background: var(--color-track4) !important; }
 .key.active.track5 { color: var(--color-track5); background: var(--color-track5) !important; }
 
+.site-footer {
+  margin: 3rem auto 2rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.github-link {
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.github-link:hover {
+  color: var(--point-color);
+  transform: scale(1.1);
+}
+
 @media (max-width: 768px) {
   #app {
     padding: 1rem;
