@@ -69,7 +69,6 @@ h1 {
 
 .help-icon {
   color: var(--text-muted);
-  cursor: help;
   display: flex;
   align-items: center;
   transition: color 0.2s ease;
