@@ -68,7 +68,7 @@ export class MMLParser {
             // N is absolute note number. N0 is usually not used, N12 is C1.
             // Mabinogi: N48 is C4.
             const pitch = this.noteNumberToPitch(n);
-            const duration = this.calcDuration(currentLength, currentTime);
+            const duration = this.calcDuration(currentLength, 0);
             notes.push({
               time: currentTime,
               pitch: pitch,
