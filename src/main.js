@@ -11,10 +11,16 @@ const playIcon = document.getElementById('playIcon');
 const playText = document.getElementById('playText');
 const pasteBtn = document.getElementById('pasteBtn');
 const copyBtn = document.getElementById('copyBtn');
+const stopBtn = document.getElementById('stopBtn');
 const keyboardContainer = document.getElementById('keyboard');
 const toastContainer = document.getElementById('toast-container');
 const trackInputs = [0, 1, 2, 3, 4, 5].map(i => document.getElementById(`track${i}`));
 const charCounts = document.querySelectorAll('.char-count');
+const clearAllBtn = document.getElementById('clearAllBtn');
+const clearTrackBtns = document.querySelectorAll('.clear-track-btn');
+const clearModal = document.getElementById('clearModal');
+const confirmYes = document.getElementById('confirmYes');
+const confirmNo = document.getElementById('confirmNo');
 
 // Auto-save logic
 const saveToLocalStorage = () => {
@@ -39,7 +45,7 @@ const loadFromLocalStorage = () => {
   }
 };
 
-let isPlaying = false;
+let playState = 'stopped'; // 'stopped', 'playing', 'paused'
 
 // Initialize Keyboard
 const createKeyboard = () => {
@@ -120,13 +126,22 @@ const stopPlayback = () => {
   document.querySelectorAll('.key.active').forEach(k => k.classList.remove('active'));
   playIcon.innerHTML = `<path d="M8 5v14l11-7z"/>`;
   playText.textContent = '재생';
-  isPlaying = false;
+  playState = 'stopped';
 };
 
 togglePlayBtn.addEventListener('click', async () => {
-  if (isPlaying) {
-    stopPlayback();
+  if (playState === 'playing') {
+    engine.pause();
+    playIcon.innerHTML = `<path d="M8 5v14l11-7z"/>`;
+    playText.textContent = '재생';
+    playState = 'paused';
+  } else if (playState === 'paused') {
+    engine.resume();
+    playIcon.innerHTML = `<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>`;
+    playText.textContent = '일시정지';
+    playState = 'playing';
   } else {
+    // stopped
     await engine.init();
     // Tempo is usually defined in MML (T command), fallback to 120 if not set.
     engine.setTempo(120);
@@ -140,10 +155,14 @@ togglePlayBtn.addEventListener('click', async () => {
     });
 
     engine.play(allTracks);
-    playIcon.innerHTML = `<path d="M6 6h12v12H6z"/>`;
-    playText.textContent = '정지';
-    isPlaying = true;
+    playIcon.innerHTML = `<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>`;
+    playText.textContent = '일시정지';
+    playState = 'playing';
   }
+});
+
+stopBtn.addEventListener('click', () => {
+  stopPlayback();
 });
 
 pasteBtn.addEventListener('click', async () => {
@@ -172,6 +191,45 @@ copyBtn.addEventListener('click', () => {
   navigator.clipboard.writeText(mml).then(() => {
     showToast('클립보드에 복사되었습니다!');
   });
+});
+
+// Clear Track Logic
+clearTrackBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const trackIndex = parseInt(btn.dataset.track, 10);
+    if (trackInputs[trackIndex]) {
+      trackInputs[trackIndex].value = '';
+      updateCharCount(trackIndex);
+      saveToLocalStorage();
+      showToast(`트랙 ${trackIndex + 1}이 초기화되었습니다.`);
+    }
+  });
+});
+
+// Global Clear Logic (Modal)
+clearAllBtn.addEventListener('click', () => {
+  clearModal.classList.add('active');
+});
+
+confirmNo.addEventListener('click', () => {
+  clearModal.classList.remove('active');
+});
+
+confirmYes.addEventListener('click', () => {
+  trackInputs.forEach((input, i) => {
+    input.value = '';
+    updateCharCount(i);
+  });
+  saveToLocalStorage();
+  clearModal.classList.remove('active');
+  showToast('모든 트랙이 초기화되었습니다.');
+});
+
+// Close modal when clicking outside
+clearModal.addEventListener('click', (e) => {
+  if (e.target === clearModal) {
+    clearModal.classList.remove('active');
+  }
 });
 
 // Audio Engine Visual Sync

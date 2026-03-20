@@ -93,6 +93,14 @@ export class AudioEngine {
     this.parts = [];
   }
 
+  pause() {
+    Tone.Transport.pause();
+  }
+
+  resume() {
+    Tone.Transport.start();
+  }
+
   setTempo(bpm) {
     Tone.Transport.bpm.value = bpm;
   }

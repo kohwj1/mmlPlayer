@@ -44,6 +44,12 @@
           </svg>
           <span id="playText">재생</span>
         </button>
+        <button id="stopBtn" title="정지">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6 6h12v12H6z" />
+          </svg>
+          <span>정지</span>
+        </button>
         <button id="copyBtn">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
             <path
@@ -58,6 +64,12 @@
           </svg>
           붙여넣기
         </button>
+        <button id="clearAllBtn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+          </svg>
+          초기화
+        </button>
       </div>
     </header>
 
@@ -66,42 +78,84 @@
       <div class="track-container" data-track="0">
         <div class="track-header">
           <span class="track-label"><span class="color-dot track0"></span>Melody</span>
-          <span class="char-count">0 / 2400</span>
+          <div class="track-header-right">
+            <span class="char-count">0 / 2400</span>
+            <button class="clear-track-btn" title="트랙 초기화" data-track="0">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+              </svg>
+            </button>
+          </div>
         </div>
         <textarea placeholder="mml@..." id="track0"></textarea>
       </div>
       <div class="track-container" data-track="1">
         <div class="track-header">
           <span class="track-label"><span class="color-dot track1"></span>Chord 1</span>
-          <span class="char-count">0 / 2400</span>
+          <div class="track-header-right">
+            <span class="char-count">0 / 2400</span>
+            <button class="clear-track-btn" title="트랙 초기화" data-track="1">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+              </svg>
+            </button>
+          </div>
         </div>
         <textarea id="track1"></textarea>
       </div>
       <div class="track-container" data-track="2">
         <div class="track-header">
           <span class="track-label"><span class="color-dot track2"></span>Chord 2</span>
-          <span class="char-count">0 / 2400</span>
+          <div class="track-header-right">
+            <span class="char-count">0 / 2400</span>
+            <button class="clear-track-btn" title="트랙 초기화" data-track="2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+              </svg>
+            </button>
+          </div>
         </div>
         <textarea id="track2"></textarea>
       </div>
       <div class="track-container" data-track="3">
         <div class="track-header">
           <span class="track-label"><span class="color-dot track3"></span>Chord 3</span>
-          <span class="char-count">0 / 2400</span>
+          <div class="track-header-right">
+            <span class="char-count">0 / 2400</span>
+            <button class="clear-track-btn" title="트랙 초기화" data-track="3">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+              </svg>
+            </button>
+          </div>
         </div>
         <textarea id="track3"></textarea>
       </div>
       <div class="track-container" data-track="4">
         <div class="track-header">
           <span class="track-label"><span class="color-dot track4"></span>Chord 4</span>
-          <span class="char-count">0 / 2400</span>
+          <div class="track-header-right">
+            <span class="char-count">0 / 2400</span>
+            <button class="clear-track-btn" title="트랙 초기화" data-track="4">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+              </svg>
+            </button>
+          </div>
         </div>
         <textarea id="track4"></textarea>
       </div>
       <div class="track-container" data-track="5">
         <div class="track-header">
           <span class="track-label"><span class="color-dot track5"></span>Chord 5</span>
-          <span class="char-count">0 / 2400</span>
+          <div class="track-header-right">
+            <span class="char-count">0 / 2400</span>
+            <button class="clear-track-btn" title="트랙 초기화" data-track="5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+              </svg>
+            </button>
+          </div>
         </div>
         <textarea id="track5"></textarea>
       </div>
@@ -124,6 +178,16 @@
       </a>
     </footer>
     <script type="module" src="/src/main.js"></script>
+    <div id="clearModal" class="modal-overlay">
+      <div class="modal">
+        <h3>현재 입력된 내용을 모두 삭제하시겠습니까?</h3>
+        <div class="modal-buttons">
+          <button id="confirmNo" class="btn-no">아니오</button>
+          <button id="confirmYes" class="btn-yes">네</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

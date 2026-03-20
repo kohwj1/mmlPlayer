@@ -208,6 +208,12 @@ button.primary:hover {
   align-items: center;
 }
 
+.track-header-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
 .track-label {
   display: flex;
   align-items: center;
@@ -371,6 +377,110 @@ textarea {
 .github-link:hover {
   color: var(--point-color);
   transform: scale(1.1);
+}
+
+/* Clear Buttons */
+.clear-track-btn {
+  background: none;
+  padding: 4px;
+  border-radius: 4px;
+  color: var(--text-muted);
+  opacity: 0.5;
+  transition: all 0.2s ease;
+  margin-left: 8px;
+}
+
+.clear-track-btn:hover {
+  opacity: 1;
+  color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.1);
+}
+
+#clearAllBtn {
+  color: var(--text-muted);
+}
+
+#clearAllBtn:hover {
+  color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.1);
+}
+
+/* Modal UI */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  padding: 2rem;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+.modal-overlay.active .modal {
+  transform: translateY(0);
+}
+
+.modal h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-main);
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.modal-buttons button {
+  min-width: 100px;
+  justify-content: center;
+}
+
+.btn-yes {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+}
+
+.btn-yes:hover {
+  background: rgba(255, 77, 77, 0.1);
+  color: #ff4d4d;
+  border-color: rgba(255, 77, 77, 0.2);
+}
+
+.btn-no {
+  background: var(--point-color) !important;
+  color: white !important;
+}
+
+.btn-no:hover {
+  background: #e66a02 !important;
+  box-shadow: 0 4px 15px rgba(255, 117, 2, 0.3);
 }
 
 @media (max-width: 768px) {
