@@ -28,6 +28,7 @@ export class MMLParser {
     let currentVolume = 8;
     let currentDots = 0;
     let currentTime = 0; // seconds
+    let tieNext = false;
 
     const getNum = () => {
       let numStr = '';
@@ -68,6 +69,9 @@ export class MMLParser {
             currentPos++;
           }
           break;
+        case '&':
+          tieNext = true;
+          break;
         case 'N':
           const n = getNum();
           if (n !== null) {
@@ -75,13 +79,19 @@ export class MMLParser {
             // Mabinogi: N48 is C4.
             const pitch = this.noteNumberToPitch(n);
             const duration = this.calcDuration(currentLength, currentDots);
-            notes.push({
-              time: currentTime,
-              pitch: pitch,
-              duration: duration.seconds,
-              volume: currentVolume / 15
-            });
+            
+            if (tieNext && notes.length > 0 && notes[notes.length - 1].pitch === pitch && Math.abs(notes[notes.length - 1].time + notes[notes.length - 1].duration - currentTime) < 0.0001) {
+              notes[notes.length - 1].duration += duration.seconds;
+            } else {
+              notes.push({
+                time: currentTime,
+                pitch: pitch,
+                duration: duration.seconds,
+                volume: currentVolume / 15
+              });
+            }
             currentTime += duration.seconds;
+            tieNext = false;
           }
           break;
         case 'R':
@@ -120,15 +130,21 @@ export class MMLParser {
           }
 
           if (char !== 'R') {
-            notes.push({
-              time: currentTime,
-              pitch: `${normalizedPitch}${normalizedOctave}`,
-              duration: duration.seconds,
-              volume: currentVolume / 15
-            });
+            const fullPitch = `${normalizedPitch}${normalizedOctave}`;
+            if (tieNext && notes.length > 0 && notes[notes.length - 1].pitch === fullPitch && Math.abs(notes[notes.length - 1].time + notes[notes.length - 1].duration - currentTime) < 0.0001) {
+              notes[notes.length - 1].duration += duration.seconds;
+            } else {
+              notes.push({
+                time: currentTime,
+                pitch: fullPitch,
+                duration: duration.seconds,
+                volume: currentVolume / 15
+              });
+            }
           }
           
           currentTime += duration.seconds;
+          tieNext = false;
           break;
       }
     }
