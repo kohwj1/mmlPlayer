@@ -26,6 +26,7 @@ export class MMLParser {
     let currentOctave = 4;
     let currentLength = 4;
     let currentVolume = 8;
+    let currentDots = 0;
     let currentTime = 0; // seconds
 
     const getNum = () => {
@@ -61,6 +62,11 @@ export class MMLParser {
         case 'L':
           const l = getNum();
           if (l !== null) currentLength = l;
+          currentDots = 0;
+          while (currentPos < part.length && part[currentPos] === '.') {
+            currentDots++;
+            currentPos++;
+          }
           break;
         case 'N':
           const n = getNum();
@@ -68,7 +74,7 @@ export class MMLParser {
             // N is absolute note number. N0 is usually not used, N12 is C1.
             // Mabinogi: N48 is C4.
             const pitch = this.noteNumberToPitch(n);
-            const duration = this.calcDuration(currentLength, 0);
+            const duration = this.calcDuration(currentLength, currentDots);
             notes.push({
               time: currentTime,
               pitch: pitch,
@@ -101,7 +107,7 @@ export class MMLParser {
             currentPos++;
           }
 
-          const duration = this.calcDuration(len || currentLength, dots);
+          const duration = this.calcDuration(len || currentLength, dots || (len ? 0 : currentDots));
 
           // Normalize pitch (b to #) for highlighting consistency
           let normalizedPitch = pitch;
